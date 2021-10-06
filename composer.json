@@ -1,0 +1,19 @@
+{
+    "name": "nfservice/support",
+    "description": "Biblioteca base para comunicaçao do suporte com a API de outros Sistemas",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Diego Almeida",
+            "email": "diego.feres82@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "NFService\\Support\\": "src/"
+        }
+    },
+    "minimum-stability": "stable",
+    "require": {}
+}
