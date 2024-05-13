@@ -319,6 +319,54 @@ class Tools
         }
     }
 
+      /**
+     * Função responsável por listar bancos com integração VAN
+     *
+     * @param array $params parametros adicionais aceitos pela rota
+     *
+     * @access public
+     * @return array
+     */
+    public function listaIntegracaoVAN(int $customer_id, array $params = []):array
+    {
+        try {
+            $dados = $this->get("banks/{$customer_id}", $params);
+
+            if ($dados['httpCode'] == 200 || (isset($dados['body']->errors) && !empty($dados['body']->errors))) {
+                return $dados;
+            }
+
+            throw new Exception($dados['body']->message, 1);
+        } catch (Exception $error) {
+            throw new Exception($error, 1);
+        }
+    }
+
+    /**
+     * Função responsável por atualizar status de integração VAN
+     *
+     * @param array $params parametros adicionais aceitos pela rota
+     *
+     * @access public
+     * @return array
+     */
+    public function atualizaStatusIntegracaoVAN(int $customer_id, int $status, int $letter_id, array $params = []):array
+    {
+        try {
+            $dados = $this->post("banks/{$customer_id}/van/{$letter_id}/update-status", [
+                'status' => $status
+            ], $params);
+
+            if ($dados['httpCode'] == 200 || (isset($dados['body']->errors) && !empty($dados['body']->errors))) {
+                return $dados;
+            }
+
+            throw new Exception($dados['body']->message, 1);
+        } catch (Exception $error) {
+            throw new Exception($error, 1);
+        }
+    }
+
     /**
      * Execute a GET Request
      *
